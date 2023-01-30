@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.javaguides.springboot.model.BlogPojo;
+import net.javaguides.springboot.repository.BlogRepository;
 import net.javaguides.springboot.service.BlogService;
 
 @Controller
@@ -21,6 +22,8 @@ public class BlogController {
 	@Autowired
 	private BlogService BlogService;
 	
+	@Autowired
+	private BlogRepository blogRep;
 	// display list of employees
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
@@ -45,6 +48,20 @@ public class BlogController {
 	}
 	
 	
+@GetMapping("page/pet.html")
+public String  petpage(Model  model)
+{
+//	return blogRep.findAll();
+//
+//	
+//	model.addAttribute("benny", ListBlogs);
+	
+	model.addAttribute("benny", blogRep.findAll());
+	return "pet";	
+}
+
+
+
 
 
 }
